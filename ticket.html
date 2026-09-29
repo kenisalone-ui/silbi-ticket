@@ -136,7 +136,7 @@
 
         <script>
             const params = new URLSearchParams(window.location.search);
-
+        
             const name = params.get("name");
             const queue = params.get("queue");
             const service = params.get("service");
@@ -144,34 +144,62 @@
             const date = params.get("date");
             const time = params.get("time");
             const wait = params.get("wait");
-
-            if (name) {
-            document.getElementById("hello").textContent =
-            "Kumusta, " + name + "!";
-            }
-
-            if (queue) {
-            document.getElementById("queue").textContent = queue;
-            }
-
-            if (service) {
-            document.getElementById("service").textContent = service;
-            }
-
-            if (type) {
-            document.getElementById("type").textContent = type;
-            }
-
-            if (date) {
-            document.getElementById("date").textContent = date;
-            }
-
-            if (time) {
-            document.getElementById("time").textContent = time;
-            }
-
-            if (wait) {
-            document.getElementById("wait").textContent = wait;
+            const expires = params.get("expires");
+        
+            if (expires && Date.now() > Number(expires)) {
+        
+                document.querySelector(".ticket").innerHTML = `
+                    <div class="logo">SILBI</div>
+        
+                    <div style="
+                        font-size: 24px;
+                        font-weight: bold;
+                        margin-top: 50px;
+                    ">
+                        Ticket Expired
+                    </div>
+        
+                    <div style="
+                        margin-top: 15px;
+                        color: #666;
+                        font-size: 15px;
+                        line-height: 1.6;
+                    ">
+                        This queue ticket is no longer valid.<br>
+                        Queue tickets are valid for 7 days.
+                    </div>
+                `;
+        
+            } else {
+        
+                if (name) {
+                    document.getElementById("hello").textContent =
+                        "Kumusta, " + name + "!";
+                }
+        
+                if (queue) {
+                    document.getElementById("queue").textContent = queue;
+                }
+        
+                if (service) {
+                    document.getElementById("service").textContent = service;
+                }
+        
+                if (type) {
+                    document.getElementById("type").textContent = type;
+                }
+        
+                if (date) {
+                    document.getElementById("date").textContent = date;
+                }
+        
+                if (time) {
+                    document.getElementById("time").textContent = time;
+                }
+        
+                if (wait) {
+                    document.getElementById("wait").textContent = wait;
+                }
             }
         </script>
 
